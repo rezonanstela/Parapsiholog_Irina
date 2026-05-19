@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, shrink-to-fit=no, viewport-fit=cover">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Ирина Чугунова — Парапсихолог, Телесный терапевт | Резонансная правка тела и души</title>
 <meta name="description" content="Ирина Чугунова — парапсихолог и телесный терапевт. Метод «Резонансная правка тела и души»: психосоматика, родовые программы, аллергии, панические атаки, тревожность, хроническая усталость. Диагностика онлайн и очно (Кострома, Пушкино). Запишитесь на консультацию.">
@@ -121,7 +121,7 @@
 :root{--bg-deep:#f9f6f0;--bg-surface:#f4efe6;--bg-glass:rgba(255,252,245,0.72);--text-main:#2c2a25;--text-muted:#5a554a;--sage:#7a9b76;--sage-light:#a3c29f;--gold:#c9a24e;--gold-light:#e8c468;--peach:#e8c4b0;--peach-light:#f5e1d4;--lavender:#b8a9c9;--shadow-soft:0 12px 40px rgba(122,155,118,0.15);--shadow-glow:0 0 24px rgba(201,162,78,0.25);--radius:20px;--radius-sm:14px;--radius-pill:50px;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'Nunito',system-ui,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{font-family:var(--font-sans);color:var(--text-main);background:var(--bg-deep);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-sans);color:var(--text-main);background:var(--bg-deep);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;touch-action:manipulation}
 h1,h2,h3,h4{font-family:var(--font-serif);font-weight:500;line-height:1.2}
 .container{max-width:1120px;margin:0 auto;padding:0 24px}
 .cursor-glow{position:fixed;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,78,0.5) 0%,rgba(122,155,118,0.15) 60%,transparent 100%);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:multiply;transition:width .3s,height .3s}
@@ -324,9 +324,73 @@ h1,h2,h3,h4{font-family:var(--font-serif);font-weight:500;line-height:1.2}
 .modal-box p, .modal-box li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 .modal-box ul { padding-left: 20px; margin-bottom: 16px; }
 
-@media(max-width:1024px){.about-grid{grid-template-columns:1fr;gap:32px}.about-img-wrap{max-width:340px;margin:0 auto}.grid-3,.reviews-grid{grid-template-columns:repeat(2,1fr)}.chakra-dots{display:none}}
-@media(max-width:768px){.nav-links{display:none}.burger{display:flex}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(249,246,240,0.95);padding:28px 20px;z-index:101;align-items:center;gap:20px;backdrop-filter:blur(12px)}.nav-links.open a{font-size:1rem;color:var(--text-main)}.grid-3,.reviews-grid,.footer-grid{grid-template-columns:1fr}.form-wrap{padding:28px 20px}.quiz-body{padding:24px 18px}.modal-box{padding: 24px 20px;}}
-@media(max-width:480px){.hero-actions{flex-direction:column;align-items:center}.btn-primary,.btn-ghost{width:100%;justify-content:center}.about-stats{flex-direction:column;gap:14px}.hero-micro{flex-direction:column;gap:6px}}
+/* Адаптивность — полный пересмотр */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .about-img-wrap{max-width:340px;margin:0 auto}
+  .grid-3,.reviews-grid{grid-template-columns:repeat(2,1fr)}
+  .chakra-dots{display:none}
+}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;bottom:0;
+    background: rgba(249,246,240,0.98); /* почти непрозрачный */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding:28px 20px;
+    z-index:101;
+    align-items:center;gap:20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
+  .nav-links.open a{font-size:1.1rem;color:var(--text-main);padding:10px 0;width:100%;text-align:center;border-bottom:1px solid rgba(122,155,118,0.1)}
+  .nav-links.open a:last-child{border-bottom:none}
+  .grid-3,.reviews-grid,.footer-grid{grid-template-columns:1fr}
+  .form-wrap{padding:28px 20px}
+  .quiz-body{padding:24px 18px}
+  .modal-box{padding: 24px 20px;}
+  .hero{padding:100px 16px 60px;min-height:auto}
+  .hero h1{font-size:2.2rem}
+  .hero-sub{font-size:0.95rem}
+}
+
+@media(max-width:480px){
+  .container{padding-left:16px;padding-right:16px}
+  .section{padding:60px 0}
+  .hero{padding:90px 16px 60px}
+  .hero h1{font-size:2rem}
+  .hero-sub{font-size:0.9rem}
+  .hero-actions{flex-direction:column;align-items:center}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center;padding:14px 20px;font-size:0.9rem}
+  .hero-micro{flex-direction:column;gap:6px}
+  .about-stats{flex-direction:column;gap:14px}
+  .quiz-body{padding:20px 14px}
+  .quiz-question{font-size:1.1rem}
+  .quiz-opt{padding:12px 12px;font-size:0.85rem}
+  .form-wrap{padding:24px 16px}
+  .fi,.fs,.ft,.fsub{font-size:0.85rem}
+  .about-img-wrap{max-width:280px;margin:0 auto 24px}
+  .footer-grid{grid-template-columns:1fr;gap:24px}
+  .grid-3,.reviews-grid{grid-template-columns:1fr}
+  .header-inner{height:60px}
+  .hero-badge{font-size:0.7rem;padding:6px 14px}
+  .section-head h2{font-size:1.6rem}
+  .section-head p{font-size:0.9rem}
+}
+
+/* Отключаем кастомный курсор на тач-устройствах */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-glow { display: none !important; }
+}
+
+/* Дополнительная подстраховка от горизонтальной прокрутки */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
 </style>
 </head>
 <body>
@@ -557,13 +621,12 @@ h1,h2,h3,h4{font-family:var(--font-serif);font-weight:500;line-height:1.2}
 // --- MODAL LOGIC ---
 function openModal(id) {
     document.getElementById(id).classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    document.body.style.overflow = 'hidden';
 }
 function closeModal(id) {
     document.getElementById(id).classList.remove('active');
-    document.body.style.overflow = ''; // Restore scroll
+    document.body.style.overflow = '';
 }
-// Close modal on ESC key
 document.addEventListener('keydown', function(event) {
     if (event.key === "Escape") {
         document.querySelectorAll('.modal-overlay.active').forEach(modal => {
@@ -573,14 +636,13 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Scroll function — all navigation goes through this
+// Scroll function
 function scrollToSection(id){
   const el=document.getElementById(id);
   if(!el)return;
   const headerHeight=80;
   const targetPos=el.getBoundingClientRect().top+window.pageYOffset-headerHeight;
   window.scrollTo({top:targetPos,behavior:'smooth'});
-  // Close mobile menu
   document.getElementById('nav').classList.remove('open');
   document.getElementById('burger').classList.remove('open');
 }
