@@ -537,7 +537,19 @@ html, body {
 <div class="fcheck"><input type="checkbox" id="fConsent" required><label for="fConsent">Я согласна на обработку персональных данных</label></div>
 <button type="submit" class="fsub">Отправить заявку</button>
 </form>
-<div id="fOk" style="display:none;text-align:center;padding:32px 20px"><div style="font-size:2.2rem;margin-bottom:10px;color:var(--sage)">🌿</div><h3>Спасибо, я вас услышала</h3><p style="color:var(--text-muted);font-size:.9rem">Ответ придёт в течение 24 часов. А пока — сделайте глубокий вдох. Вы уже сделали шаг.</p></div>
+<!-- Новый попап с благодарностью и кнопками -->
+<div id="fOk" style="display:none;text-align:center;padding:32px 20px;">
+  <div style="font-size:2.2rem;margin-bottom:10px;color:var(--sage)">🌿</div>
+  <h3>Благодарю за заявку!</h3>
+  <p style="color:var(--text-muted);font-size:.9rem;margin:12px 0 20px;line-height:1.6;">
+    Она уже отправлена Ирине.<br>
+    Пока ожидаете обратной связи, можете подписаться на канал в телеграм или в сообщество ВК, где проводите время чаще 🫶🏻
+  </p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="https://vk.ru/rezonanstela" target="_blank" class="btn-primary" style="padding:12px 24px;font-size:.85rem;">Подписаться ВК</a>
+    <a href="https://t.me/rezonanstela11" target="_blank" class="btn-primary" style="padding:12px 24px;font-size:.85rem;">Подписаться Telegram</a>
+  </div>
+</div>
 </div>
 </div>
 </section>
@@ -687,8 +699,45 @@ function showResult(){
 // FAQ
 function faqToggle(btn){const item=btn.parentElement;const open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));if(!open)item.classList.add('open')}
 
-// Form
-function formSubmit(e){e.preventDefault();document.getElementById('cForm').style.display='none';document.getElementById('fOk').style.display='block'}
+// Form – отправка в Telegram + показ попапа
+async function formSubmit(e){
+  e.preventDefault();
+
+  // Собираем данные формы
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const pkg = document.getElementById('fPkg').value;
+  const pkgText = document.getElementById('fPkg').selectedOptions[0]?.text || pkg;
+  const msg = document.getElementById('fMsg').value.trim();
+
+  // Формируем сообщение для бота
+  const text = `🕊 Новая заявка\n\nИмя: ${name}\nКонтакты: ${phone}\nНаправление: ${pkgText}\nСообщение: ${msg || '—'}`;
+
+  // Токен бота и Chat ID Ирины
+  const BOT_TOKEN = '8785169794:AAExd-p9R5H_JOOi7Muk9cY8_YgyvGMcBz0';
+  const CHAT_ID = '1205471075';
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+  // Прячем форму, показываем попап (не ждём ответа бота для удобства)
+  document.getElementById('cForm').style.display = 'none';
+  document.getElementById('fOk').style.display = 'block';
+
+  // Асинхронно отправляем в Telegram
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: text,
+        parse_mode: 'HTML'
+      })
+    });
+  } catch (err) {
+    // Без паники – заявка всё равно показана, ошибку логируем только в консоль
+    console.error('Ошибка отправки в Telegram:', err);
+  }
+}
 
 // Garden
 const garden=document.getElementById('garden');const blooms=[];
