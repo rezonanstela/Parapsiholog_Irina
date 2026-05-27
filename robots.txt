@@ -1,0 +1,18 @@
+# Robots.txt для сайта Ирины Чугуновой
+# Сайт: https://rezonanstela.github.io/
+
+# Разрешаем всем поисковым роботам
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных путей (если появятся)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /node_modules/
+
+# Указываем путь к карте сайта
+Sitemap: https://rezonanstela.github.io/sitemap.xml
+
+# Указываем главное зеркало для Яндекса
+Host: https://rezonanstela.github.io/
